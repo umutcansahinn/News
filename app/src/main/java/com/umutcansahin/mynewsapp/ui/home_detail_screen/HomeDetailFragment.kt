@@ -1,10 +1,15 @@
 package com.umutcansahin.mynewsapp.ui.home_detail_screen
 
-import androidx.fragment.app.Fragment
+import com.umutcansahin.mynewsapp.databinding.FragmentHomeDetailBinding
+import com.umutcansahin.mynewsapp.ui.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeDetailFragment : Fragment() {
+class HomeDetailFragment :
+    BaseFragment<FragmentHomeDetailBinding>(FragmentHomeDetailBinding::inflate) {
+    override fun observeData() {}
+
+    override fun initView() {}
 
 
 }
