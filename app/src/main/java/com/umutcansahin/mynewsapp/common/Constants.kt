@@ -7,4 +7,5 @@ object Constants {
     const val BASE_URL = "https://newsapi.org/v2/"
     const val TIMEOUT_IN_SECOND = 30L
     const val REFRESH_TIME = 5_000L
+    const val ROUNDED_CORNERS = 16
 }
