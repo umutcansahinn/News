@@ -15,7 +15,7 @@ class GetTopHeadlinesNewsUseCaseImpl @Inject constructor(
             emit(Resource.Loading)
             emit(Resource.Success(newsRepository.getAllNews(country)))
         } catch (e: Exception) {
-            emit(Resource.Error(e.message))
+            emit(Resource.Error(e.message.orEmpty()))
         }
     }
 }
