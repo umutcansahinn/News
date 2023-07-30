@@ -10,7 +10,7 @@ plugins {
 
 android {
     namespace = "com.umutcansahin.mynewsapp"
-    compileSdk = 34
+    compileSdk = 33
 
     defaultConfig {
         applicationId = "com.umutcansahin.mynewsapp"

@@ -26,6 +26,7 @@ fun Article.toArticleUiModel(): ArticleUiModel {
 
 fun NewsResponse.toNewsUiModel(): NewsUiModel {
     return NewsUiModel(
+//        article = article?.let { it.map { it.toArticleUiModel() } } ?: emptyList(),
         article = article.orEmptyList().map { it.toArticleUiModel() },
         status = status.orEmpty(),
         totalResults = totalResults.orMinusOne()
