@@ -4,6 +4,7 @@ import androidx.navigation.fragment.navArgs
 import com.umutcansahin.mynewsapp.common.extensions.loadImage
 import com.umutcansahin.mynewsapp.common.extensions.toFormatDate
 import com.umutcansahin.mynewsapp.databinding.FragmentHomeDetailBinding
+import com.umutcansahin.mynewsapp.ui.MainActivity
 import com.umutcansahin.mynewsapp.ui.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -25,6 +26,30 @@ class HomeDetailFragment :
             tvArticleDescription.text = model.description
             tvArticleSourceName.text= model.source.name
         }
+    }
+
+    private fun hideBottomBar() {
+        val activity = requireActivity()
+        if (activity is MainActivity) {
+            activity.hideBottomNavigation()
+        }
+    }
+
+    private fun showBottomBar() {
+        val activity = requireActivity()
+        if (activity is MainActivity) {
+            activity.showBottomNavigation()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        hideBottomBar()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        showBottomBar()
     }
 
 
