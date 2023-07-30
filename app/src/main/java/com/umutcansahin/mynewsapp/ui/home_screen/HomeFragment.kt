@@ -4,9 +4,11 @@ import android.util.Log
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.umutcansahin.mynewsapp.common.extensions.gone
 import com.umutcansahin.mynewsapp.common.extensions.visible
 import com.umutcansahin.mynewsapp.databinding.FragmentHomeBinding
+import com.umutcansahin.mynewsapp.domain.model.ArticleUiModel
 import com.umutcansahin.mynewsapp.manager.loading_indicator.LoadingIndicator
 import com.umutcansahin.mynewsapp.manager.recyclerview_listener.RecyclerviewListener
 import com.umutcansahin.mynewsapp.ui.MainActivity
@@ -25,7 +27,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     lateinit var loadingIndicator: LoadingIndicator
 
     private val homeAdapter by lazy {
-        HomeAdapter()
+        HomeAdapter(::navigateToDetailScreen)
     }
 
     private val recyclerviewListener by lazy {
@@ -71,6 +73,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             homeRecyclerview.adapter = homeAdapter
             homeRecyclerview.addOnScrollListener(recyclerviewListener)
         }
+    }
+
+    private fun navigateToDetailScreen(model:ArticleUiModel) {
+        val action = HomeFragmentDirections.actionNavigationHomeScreenToNavigationHomeDetailScreen(model)
+        findNavController().navigate(action)
     }
 
     private fun onScrollUp() {

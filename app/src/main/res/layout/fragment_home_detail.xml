@@ -1,13 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.home_detail_screen.HomeDetailFragment">
 
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+        android:layout_height="wrap_content"
+        android:paddingTop="20dp">
 
-</FrameLayout>
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_vertical_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="20dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_vertical_end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="20dp" />
+
+        <ImageView
+            android:id="@+id/ivArticleImage"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            tools:src="@tools:sample/avatars"
+            android:contentDescription="@string/article_image"
+            app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+            app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/tvArticleTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:gravity="start"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:text="Exclusive: Banks vote to limit accounting of emissions in bond and stock sales - Reuters"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/ivArticleImage"
+            app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+            app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"/>
+
+        <TextView
+            android:id="@+id/tvArticlePublishedAt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:gravity="start"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            tools:text="2023-07-30T11:43:00Z"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/tvArticleTitle"
+            app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+            app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"/>
+
+        <TextView
+            android:id="@+id/tvArticleAuthor"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:gravity="start"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            tools:text="Arlette Saenz"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/tvArticlePublishedAt"
+            app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+            app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"/>
+
+        <TextView
+            android:id="@+id/tvArticleDescription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:gravity="start"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            tools:text="The Biden administration is launching a beta website for its new income-driven student loan repayment plan today, officials told CNN, allowing borrowers to begin submitting applications for the program as federal student loan payments are set to resume in Oct…"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/tvArticleAuthor"
+            app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+            app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"/>
+
+        <TextView
+            android:id="@+id/tvArticleSourceName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:gravity="end"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            tools:text="CNN"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/tvArticleDescription"
+            app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+            app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"/>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</ScrollView>

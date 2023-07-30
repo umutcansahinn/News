@@ -1,5 +1,9 @@
 package com.umutcansahin.mynewsapp.domain.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class ArticleUiModel(
     val author: String,
     val content: String,
@@ -9,4 +13,4 @@ data class ArticleUiModel(
     val title: String,
     val url: String,
     val urlToImage: String
-)
+) : Parcelable

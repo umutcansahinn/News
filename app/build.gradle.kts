@@ -6,6 +6,7 @@ plugins {
     id("kotlin-kapt")
     id("androidx.navigation.safeargs.kotlin")
     id("dagger.hilt.android.plugin")
+    id("kotlin-parcelize")
 }
 
 android {
@@ -22,7 +23,7 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         val apiKey = gradleLocalProperties(rootDir).getProperty("API_KEY")
-        buildConfigField("String","API_KEY",apiKey)
+        buildConfigField("String", "API_KEY", apiKey)
     }
 
     buildTypes {
@@ -93,7 +94,7 @@ dependencies {
     kapt("androidx.room:room-compiler:2.5.2")
 
     //animation
-    implementation ("com.airbnb.android:lottie:6.1.0")
+    implementation("com.airbnb.android:lottie:6.1.0")
 
 
 }

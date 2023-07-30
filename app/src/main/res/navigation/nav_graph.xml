@@ -18,7 +18,11 @@
         android:id="@+id/navigation_home_detail_screen"
         android:name="com.umutcansahin.mynewsapp.ui.home_detail_screen.HomeDetailFragment"
         android:label="@string/home_detail"
-        tools:layout="@layout/fragment_home_detail" />
+        tools:layout="@layout/fragment_home_detail" >
+        <argument
+            android:name="articleUiModel"
+            app:argType="com.umutcansahin.mynewsapp.domain.model.ArticleUiModel" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_favorite_screen"
         android:name="com.umutcansahin.mynewsapp.ui.favori_screen.FavoriteFragment"
