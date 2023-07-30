@@ -1,7 +1,7 @@
 package com.umutcansahin.mynewsapp.di
 
-import com.umutcansahin.mynewsapp.manager.loading.LoadingIndicator
-import com.umutcansahin.mynewsapp.manager.loading.LoadingIndicatorImpl
+import com.umutcansahin.mynewsapp.manager.loading_indicator.LoadingIndicator
+import com.umutcansahin.mynewsapp.manager.loading_indicator.LoadingIndicatorImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

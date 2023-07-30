@@ -7,7 +7,7 @@ import androidx.lifecycle.lifecycleScope
 import com.umutcansahin.mynewsapp.common.extensions.gone
 import com.umutcansahin.mynewsapp.common.extensions.visible
 import com.umutcansahin.mynewsapp.databinding.FragmentHomeBinding
-import com.umutcansahin.mynewsapp.manager.loading.LoadingIndicator
+import com.umutcansahin.mynewsapp.manager.loading_indicator.LoadingIndicator
 import com.umutcansahin.mynewsapp.ui.base.BaseFragment
 import com.umutcansahin.mynewsapp.ui.home_screen.adapter.HomeAdapter
 import dagger.hilt.android.AndroidEntryPoint

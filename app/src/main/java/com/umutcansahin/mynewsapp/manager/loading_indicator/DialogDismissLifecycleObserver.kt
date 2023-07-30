@@ -1,4 +1,4 @@
-package com.umutcansahin.mynewsapp.manager.loading
+package com.umutcansahin.mynewsapp.manager.loading_indicator
 
 import androidx.appcompat.app.AppCompatDialog
 import androidx.lifecycle.Lifecycle
