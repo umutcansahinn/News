@@ -10,6 +10,8 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.umutcansahin.mynewsapp.R
+import com.umutcansahin.mynewsapp.common.extensions.gone
+import com.umutcansahin.mynewsapp.common.extensions.visible
 import com.umutcansahin.mynewsapp.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -42,5 +44,23 @@ class MainActivity : AppCompatActivity() {
 
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp() or super.onSupportNavigateUp()
+    }
+
+    fun hideBottomNavigation() {
+        binding.bottomNavView.gone()
+
+    }
+
+    fun showBottomNavigation() {
+        binding.bottomNavView.visible()
+    }
+
+
+    fun hideActionBar() {
+        supportActionBar?.hide()
+    }
+
+    fun showActionBar() {
+        supportActionBar?.show()
     }
 }

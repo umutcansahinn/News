@@ -8,6 +8,8 @@ import com.umutcansahin.mynewsapp.common.extensions.gone
 import com.umutcansahin.mynewsapp.common.extensions.visible
 import com.umutcansahin.mynewsapp.databinding.FragmentHomeBinding
 import com.umutcansahin.mynewsapp.manager.loading_indicator.LoadingIndicator
+import com.umutcansahin.mynewsapp.manager.recyclerview_listener.RecyclerviewListener
+import com.umutcansahin.mynewsapp.ui.MainActivity
 import com.umutcansahin.mynewsapp.ui.base.BaseFragment
 import com.umutcansahin.mynewsapp.ui.home_screen.adapter.HomeAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -24,6 +26,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
     private val homeAdapter by lazy {
         HomeAdapter()
+    }
+
+    private val recyclerviewListener by lazy {
+        RecyclerviewListener(::onScrollUp, ::onScrollDown)
     }
 
     override fun observeData() {
@@ -63,8 +69,48 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     override fun initView() {
         with(binding) {
             homeRecyclerview.adapter = homeAdapter
+            homeRecyclerview.addOnScrollListener(recyclerviewListener)
         }
     }
+
+    private fun onScrollUp() {
+        showBottomBar()
+        showActionBar()
+    }
+
+    private fun onScrollDown() {
+        hideActionBar()
+        hideBottomBar()
+    }
+
+    private fun hideActionBar() {
+        val activity = requireActivity()
+        if (activity is MainActivity) {
+            activity.hideActionBar()
+        }
+    }
+
+    private fun showActionBar() {
+        val activity = requireActivity()
+        if (activity is MainActivity) {
+            activity.showActionBar()
+        }
+    }
+
+    private fun hideBottomBar() {
+        val activity = requireActivity()
+        if (activity is MainActivity) {
+            activity.hideBottomNavigation()
+        }
+    }
+
+    private fun showBottomBar() {
+        val activity = requireActivity()
+        if (activity is MainActivity) {
+            activity.showBottomNavigation()
+        }
+    }
+
 
     override fun onResume() {
         super.onResume()
@@ -74,5 +120,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     override fun onPause() {
         super.onPause()
         viewModel.stopPolling()
+        showActionBar()
+        showBottomBar()
     }
 }
