@@ -4,4 +4,6 @@
     <string name="home_detail">Home Detail</string>
     <string name="favorite">Favorite</string>
     <string name="article_image">Article Image</string>
+    <string name="error_image">Error Image</string>
+    <string name="please_try_later">Please Try Later</string>
 </resources>

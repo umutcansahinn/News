@@ -1,11 +1,11 @@
 package com.umutcansahin.mynewsapp.ui.home_screen
 
-import android.os.Bundle
 import android.util.Log
-import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import com.umutcansahin.mynewsapp.common.extensions.gone
+import com.umutcansahin.mynewsapp.common.extensions.visible
 import com.umutcansahin.mynewsapp.databinding.FragmentHomeBinding
 import com.umutcansahin.mynewsapp.manager.loading.LoadingIndicator
 import com.umutcansahin.mynewsapp.ui.base.BaseFragment
@@ -26,23 +26,33 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         HomeAdapter()
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-    }
-
     override fun observeData() {
         lifecycleScope.launch {
             viewModel.state.flowWithLifecycle(lifecycle).collect { states ->
                 when (states) {
                     is HomeUiState.Loading -> {
                         loadingIndicator.showLoading()
+                        with(binding) {
+                            homeRecyclerview.gone()
+                            errorMassage.root.gone()
+                        }
                     }
+
                     is HomeUiState.Error -> {
                         loadingIndicator.hideLoading()
+                        with(binding) {
+                            homeRecyclerview.gone()
+                            errorMassage.root.visible()
+                        }
+                        Log.d("UMUT_UMUT_ERROR", states.errorMessage)
                     }
+
                     is HomeUiState.Success -> {
                         loadingIndicator.hideLoading()
+                        with(binding) {
+                            homeRecyclerview.visible()
+                            errorMassage.root.gone()
+                        }
                         homeAdapter.submitList(states.data.article)
                     }
                 }

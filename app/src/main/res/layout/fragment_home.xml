@@ -32,4 +32,16 @@
         app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
         app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"/>
 
+
+    <include
+        android:id="@+id/errorMassage"
+        layout="@layout/error_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+        app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
