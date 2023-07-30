@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.ListAdapter
 import com.umutcansahin.mynewsapp.databinding.HomeAdapterItemBinding
 import com.umutcansahin.mynewsapp.domain.model.ArticleUiModel
 
-class HomeAdapter : ListAdapter<ArticleUiModel, HomeViewHolder>(DIFF_CALLBACK) {
+class HomeAdapter(
+    private val onClick:(ArticleUiModel)->Unit
+) : ListAdapter<ArticleUiModel, HomeViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
         val binding = HomeAdapterItemBinding.inflate(
@@ -20,7 +22,7 @@ class HomeAdapter : ListAdapter<ArticleUiModel, HomeViewHolder>(DIFF_CALLBACK) {
 
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
         getItem(position)?.let { model ->
-            holder.onBind(model = model)
+            holder.onBind(model = model, onClick = onClick)
         }
     }
 

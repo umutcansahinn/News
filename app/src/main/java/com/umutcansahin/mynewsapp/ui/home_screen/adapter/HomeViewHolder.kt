@@ -10,11 +10,14 @@ class HomeViewHolder(
     private val binding: HomeAdapterItemBinding
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun onBind(model: ArticleUiModel) {
+    fun onBind(model: ArticleUiModel,onClick:(ArticleUiModel)->Unit) {
         with(binding) {
             ivArticleImage.loadImage(model.urlToImage)
             tvArticleTitle.text = model.title
             tvArticlePublishedAt.text = model.publishedAt.toFormatDate()
+            root.setOnClickListener {
+                onClick.invoke(model)
+            }
         }
     }
 }
