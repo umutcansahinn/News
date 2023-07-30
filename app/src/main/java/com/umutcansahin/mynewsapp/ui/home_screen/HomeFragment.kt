@@ -7,15 +7,20 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.umutcansahin.mynewsapp.databinding.FragmentHomeBinding
+import com.umutcansahin.mynewsapp.manager.loading.LoadingIndicator
 import com.umutcansahin.mynewsapp.ui.base.BaseFragment
 import com.umutcansahin.mynewsapp.ui.home_screen.adapter.HomeAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
 
     private val viewModel by viewModels<HomeViewModel>()
+
+    @Inject
+    lateinit var loadingIndicator: LoadingIndicator
 
     private val homeAdapter by lazy {
         HomeAdapter()
@@ -30,9 +35,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         lifecycleScope.launch {
             viewModel.state.flowWithLifecycle(lifecycle).collect { states ->
                 when (states) {
-                    is HomeUiState.Loading -> {}
-                    is HomeUiState.Error -> {}
+                    is HomeUiState.Loading -> {
+                        loadingIndicator.showLoading()
+                    }
+                    is HomeUiState.Error -> {
+                        loadingIndicator.hideLoading()
+                    }
                     is HomeUiState.Success -> {
+                        loadingIndicator.hideLoading()
                         homeAdapter.submitList(states.data.article)
                     }
                 }
