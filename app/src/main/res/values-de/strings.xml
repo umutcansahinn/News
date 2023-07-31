@@ -13,4 +13,5 @@
     <string name="german">Deutsch</string>
     <string name="russian">Russisch</string>
     <string name="french">Französisch</string>
+    <string name="language">Sprache</string>
 </resources>

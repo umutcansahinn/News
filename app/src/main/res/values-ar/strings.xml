@@ -14,5 +14,6 @@
     <string name="german">ألمانية</string>
     <string name="russian">الروسية</string>
     <string name="french">فرنسي</string>
+    <string name="language">لغة</string>
 
 </resources>
