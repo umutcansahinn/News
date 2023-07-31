@@ -2,6 +2,8 @@ package com.umutcansahin.mynewsapp.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
@@ -12,8 +14,12 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.umutcansahin.mynewsapp.R
 import com.umutcansahin.mynewsapp.common.extensions.gone
 import com.umutcansahin.mynewsapp.common.extensions.visible
+import com.umutcansahin.mynewsapp.data.preference.DataStorePreference
 import com.umutcansahin.mynewsapp.databinding.ActivityMainBinding
+import com.umutcansahin.mynewsapp.manager.language.LanguageManager
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -21,6 +27,13 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var navHostFragment: NavHostFragment
     private lateinit var navController: NavController
+
+    @Inject
+    lateinit var dataStorePreference: DataStorePreference
+
+    @Inject
+    lateinit var languageManager: LanguageManager
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -40,10 +53,21 @@ class MainActivity : AppCompatActivity() {
 
         val bottomNavView: BottomNavigationView = binding.bottomNavView
         bottomNavView.setupWithNavController(navController)
+
+        setLanguage()
     }
 
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp() or super.onSupportNavigateUp()
+    }
+
+    private fun setLanguage() {
+        lifecycleScope.launch {
+            dataStorePreference.getSelectedLanguage.flowWithLifecycle(lifecycle)
+                .collect { countryCode ->
+                    languageManager.takeLanguageCode(countryCode = countryCode)
+                }
+        }
     }
 
     fun hideBottomNavigation() {
