@@ -1,6 +1,7 @@
 package com.umutcansahin.mynewsapp.ui.home_screen.adapter
 
 import androidx.recyclerview.widget.RecyclerView
+import com.umutcansahin.mynewsapp.R
 import com.umutcansahin.mynewsapp.common.extensions.loadImage
 import com.umutcansahin.mynewsapp.common.extensions.toFormatDate
 import com.umutcansahin.mynewsapp.databinding.HomeAdapterItemBinding

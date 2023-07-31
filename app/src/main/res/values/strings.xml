@@ -1,12 +1,17 @@
 <resources>
-    <string name="app_name">MyNewsApp</string>
+    <string name="app_name" translatable="false">MyNewsApp</string>
+
     <string name="home">Home</string>
     <string name="home_detail">Home Detail</string>
     <string name="favorite">Favorite</string>
     <string name="article_image">Article Image</string>
     <string name="error_image">Error Image</string>
     <string name="please_try_later">Please Try Later</string>
-
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="setting">Setting</string>
+    <string name="turkish">Turkish</string>
+    <string name="english">English</string>
+    <string name="arabic">Arabic</string>
+    <string name="german">German</string>
+    <string name="russian">Russian</string>
+    <string name="french">French</string>
 </resources>

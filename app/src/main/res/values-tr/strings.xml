@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="home">Ana Sayfa</string>
+    <string name="home_detail">Detay Ana Sayfa</string>
+    <string name="favorite">Favori</string>
+    <string name="article_image">Makale Resmi</string>
+    <string name="error_image">Hata Resmi</string>
+    <string name="please_try_later">Lütfen Daha Sonra Tekrar Deneyin.</string>
+    <string name="setting">Ayarlar</string>
+    <string name="turkish">Türkçe</string>
+    <string name="english">İngilizce</string>
+    <string name="arabic">Arapça</string>
+    <string name="german">Almanca</string>
+    <string name="russian">Rusça</string>
+    <string name="french">Fransızca</string>
+</resources>

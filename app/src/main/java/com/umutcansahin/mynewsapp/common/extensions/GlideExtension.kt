@@ -1,6 +1,5 @@
 package com.umutcansahin.mynewsapp.common.extensions
 
-import android.view.RoundedCorner
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners

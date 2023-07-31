@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="home">الصفحة الرئيسية</string>
+    <string name="home_detail">تفاصيل الصفحة الرئيسية</string>
+    <string name="favorite">مفضل</string>
+    <string name="article_image">الصورة المادة</string>
+    <string name="error_image">صورة الخطأ</string>
+    <string name="please_try_later">الرجاء معاودة المحاولة في وقت لاحق.</string>
+    <string name="setting">إعدادات</string>
+    <string name="turkish">اللغة التركية</string>
+    <string name="english">إنجليزي</string>
+    <string name="arabic">عربي</string>
+    <string name="german">ألمانية</string>
+    <string name="russian">الروسية</string>
+    <string name="french">فرنسي</string>
+
+</resources>

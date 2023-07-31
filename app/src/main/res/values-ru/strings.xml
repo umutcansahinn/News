@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="home">домашняя страница</string>
+    <string name="home_detail">детали домашней страницы</string>
+    <string name="favorite">любимый</string>
+    <string name="article_image">картинка статьи</string>
+    <string name="error_image">картинка ошибки</string>
+    <string name="please_try_later">Пожалуйста, повторите попытку позже.</string>
+    <string name="setting">Настройки</string>
+    <string name="turkish">турецкий</string>
+    <string name="english">Английский</string>
+    <string name="arabic">арабский</string>
+    <string name="german">Немецкий</string>
+    <string name="russian">Русский</string>
+    <string name="french">Французский</string>
+
+</resources>

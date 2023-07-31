@@ -11,7 +11,6 @@ class LanguageManagerImpl @Inject constructor() : LanguageManager {
             CountryType.UNITED_ARAB_EMIRATES.countryCode ->
                 setLanguage(CountryType.UNITED_ARAB_EMIRATES.countryCode)
 
-            CountryType.CHINA.countryCode -> setLanguage(CountryType.CHINA.countryCode)
             CountryType.FRANCE.countryCode -> setLanguage(CountryType.FRANCE.countryCode)
             CountryType.GERMANY.countryCode -> setLanguage(CountryType.GERMANY.countryCode)
             CountryType.RUSSIA.countryCode -> setLanguage(CountryType.RUSSIA.countryCode)

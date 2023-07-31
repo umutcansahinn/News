@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="home">page d\'accueil</string>
+    <string name="home_detail">détails de la page d\'accueil</string>
+    <string name="favorite">préféré</string>
+    <string name="article_image">photo de l\'article</string>
+    <string name="error_image">image d\'erreur</string>
+    <string name="please_try_later">Veuillez réessayer plus tard.</string>
+    <string name="setting">Paramètres</string>
+    <string name="turkish">Turc</string>
+    <string name="english">Anglais</string>
+    <string name="arabic">Arabe</string>
+    <string name="german">Allemand</string>
+    <string name="russian">Russe</string>
+    <string name="french">Français</string>
+</resources>
