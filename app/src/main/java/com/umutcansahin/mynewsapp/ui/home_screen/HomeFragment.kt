@@ -1,6 +1,8 @@
 package com.umutcansahin.mynewsapp.ui.home_screen
 
+import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -34,7 +36,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         RecyclerviewListener(::onScrollUp, ::onScrollDown)
     }
 
-    override fun observeData() {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        observeData()
+        initView()
+    }
+
+    private fun observeData() {
         lifecycleScope.launch {
             viewModel.state.flowWithLifecycle(lifecycle).collect { states ->
                 when (states) {
@@ -68,15 +76,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         }
     }
 
-    override fun initView() {
+    private fun initView() {
         with(binding) {
             homeRecyclerview.adapter = homeAdapter
             homeRecyclerview.addOnScrollListener(recyclerviewListener)
         }
     }
 
-    private fun navigateToDetailScreen(model:ArticleUiModel) {
-        val action = HomeFragmentDirections.actionNavigationHomeScreenToNavigationHomeDetailScreen(model)
+    private fun navigateToDetailScreen(model: ArticleUiModel) {
+        val action =
+            HomeFragmentDirections.actionNavigationHomeScreenToNavigationHomeDetailScreen(model)
         findNavController().navigate(action)
     }
 

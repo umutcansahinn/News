@@ -1,5 +1,7 @@
 package com.umutcansahin.mynewsapp.ui.home_detail_screen
 
+import android.os.Bundle
+import android.view.View
 import androidx.navigation.fragment.navArgs
 import com.umutcansahin.mynewsapp.common.extensions.loadImage
 import com.umutcansahin.mynewsapp.common.extensions.toFormatDate
@@ -13,9 +15,13 @@ class HomeDetailFragment :
     BaseFragment<FragmentHomeDetailBinding>(FragmentHomeDetailBinding::inflate) {
 
     private val args: HomeDetailFragmentArgs by navArgs()
-    override fun observeData() {}
 
-    override fun initView() {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initView()
+    }
+
+    private fun initView() {
         val model = args.articleUiModel
 
         with(binding) {
@@ -24,7 +30,7 @@ class HomeDetailFragment :
             tvArticlePublishedAt.text = model.publishedAt.toFormatDate()
             tvArticleAuthor.text = model.author
             tvArticleDescription.text = model.description
-            tvArticleSourceName.text= model.source.name
+            tvArticleSourceName.text = model.source.name
         }
     }
 
