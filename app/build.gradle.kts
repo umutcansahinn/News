@@ -96,5 +96,8 @@ dependencies {
     //animation
     implementation("com.airbnb.android:lottie:6.1.0")
 
+    //datastore
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
+
 
 }
