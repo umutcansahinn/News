@@ -50,7 +50,8 @@ class MainActivity : AppCompatActivity() {
             setOf(
                 R.id.navigation_home_screen,
                 R.id.navigation_favorite_screen,
-                R.id.navigation_setting_screen
+                R.id.navigation_setting_screen,
+                R.id.navigation_search_screen
             )
         )
 

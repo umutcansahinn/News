@@ -37,5 +37,9 @@
         android:id="@+id/navigation_search_screen"
         android:name="com.umutcansahin.mynewsapp.ui.search_screen.SearchFragment"
         android:label="@string/search"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_navigation_search_screen_to_navigation_home_detail_screen"
+            app:destination="@id/navigation_home_detail_screen" />
+    </fragment>
 </navigation>
