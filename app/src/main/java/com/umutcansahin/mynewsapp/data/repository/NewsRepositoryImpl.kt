@@ -18,4 +18,10 @@ class NewsRepositoryImpl @Inject constructor(
             newsApi.getAllNews(country).toNewsUiModel()
         }
     }
+
+    override suspend fun getNewsBySortBy(q: String, sortByte: String): NewsUiModel {
+        return withContext(ioDispatcher) {
+            newsApi.getNewsBySearch(q, sortByte).toNewsUiModel()
+        }
+    }
 }
