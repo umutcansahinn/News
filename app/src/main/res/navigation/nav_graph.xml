@@ -33,4 +33,9 @@
         android:name="com.umutcansahin.mynewsapp.ui.setting_screen.SettingFragment"
         android:label="@string/setting"
         tools:layout="@layout/fragment_setting" />
+    <fragment
+        android:id="@+id/navigation_search_screen"
+        android:name="com.umutcansahin.mynewsapp.ui.search_screen.SearchFragment"
+        android:label="@string/search"
+        tools:layout="@layout/fragment_search" />
 </navigation>
