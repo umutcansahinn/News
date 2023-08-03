@@ -17,6 +17,7 @@ import com.umutcansahin.mynewsapp.common.extensions.visible
 import com.umutcansahin.mynewsapp.data.preference.DataStorePreference
 import com.umutcansahin.mynewsapp.databinding.ActivityMainBinding
 import com.umutcansahin.mynewsapp.manager.language.LanguageManager
+import com.umutcansahin.mynewsapp.manager.theme.ThemeManager
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -33,6 +34,9 @@ class MainActivity : AppCompatActivity() {
 
     @Inject
     lateinit var languageManager: LanguageManager
+
+    @Inject
+    lateinit var themeManager: ThemeManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,6 +61,7 @@ class MainActivity : AppCompatActivity() {
         bottomNavView.setupWithNavController(navController)
 
         setLanguage()
+        setTheme()
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -68,6 +73,15 @@ class MainActivity : AppCompatActivity() {
             dataStorePreference.getSelectedLanguage.flowWithLifecycle(lifecycle)
                 .collect { countryCode ->
                     languageManager.takeLanguageCode(countryCode = countryCode)
+                }
+        }
+    }
+
+    private fun setTheme() {
+        lifecycleScope.launch {
+            dataStorePreference.isDarkModeEnabled.flowWithLifecycle(lifecycle)
+                .collect { isLight ->
+                    themeManager.setUiTheme(isLight)
                 }
         }
     }

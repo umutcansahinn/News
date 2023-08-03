@@ -34,6 +34,7 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tiLayout"
         style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -51,6 +52,28 @@
             tools:text="English" />
 
     </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/tvThemeTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="22sp"
+        android:text="@string/dark_mode"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toStartOf="@id/switchDarkMode"
+        app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+        app:layout_constraintTop_toBottomOf="@id/tiLayout"/>
+
+    <Switch
+        android:id="@+id/switchDarkMode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        app:layout_constraintTop_toTopOf="@id/tvThemeTitle"
+        app:layout_constraintBottom_toBottomOf="@id/tvThemeTitle"
+        app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

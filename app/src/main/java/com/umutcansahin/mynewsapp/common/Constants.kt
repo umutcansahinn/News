@@ -9,5 +9,6 @@ object Constants {
     const val REFRESH_TIME = 60_000L
     const val ROUNDED_CORNERS = 16
     const val DATASTORE_NAME = "app_language_preferences"
-    const val DATASTORE_KEY_NAME = "selected_language_code"
+    const val DATASTORE_LANGUAGE_KEY = "selected_language_code"
+    const val DATASTORE_THEME_KEY = "is_dark_mode_enabled"
 }

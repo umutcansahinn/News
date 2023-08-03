@@ -14,4 +14,5 @@
     <string name="russian">Russisch</string>
     <string name="french">Französisch</string>
     <string name="language">Sprache</string>
+    <string name="dark_mode">Dunkelmodus</string>
 </resources>

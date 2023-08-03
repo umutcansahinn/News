@@ -14,5 +14,6 @@
     <string name="russian">Русский</string>
     <string name="french">Французский</string>
     <string name="language">язык</string>
+    <string name="dark_mode">темный режим</string>
 
 </resources>

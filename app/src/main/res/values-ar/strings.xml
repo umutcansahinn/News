@@ -15,5 +15,6 @@
     <string name="russian">الروسية</string>
     <string name="french">فرنسي</string>
     <string name="language">لغة</string>
+    <string name="dark_mode">الوضع المظلم</string>
 
 </resources>
