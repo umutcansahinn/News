@@ -1,5 +1,7 @@
 package com.umutcansahin.mynewsapp.ui.home_detail_screen
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.navigation.fragment.navArgs
@@ -31,6 +33,12 @@ class HomeDetailFragment :
             tvArticleAuthor.text = model.author
             tvArticleDescription.text = model.description
             tvArticleSourceName.text = model.source.name
+
+            btnVisitVewSite.setOnClickListener {
+                val intent = Intent(Intent.ACTION_VIEW)
+                intent.data = Uri.parse(model.url)
+                startActivity(intent)
+            }
         }
     }
 
