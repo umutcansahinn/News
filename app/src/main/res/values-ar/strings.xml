@@ -18,5 +18,9 @@
     <string name="dark_mode">الوضع المظلم</string>
     <string name="visit_web_site">زيارة الموقع</string>
     <string name="search">يبحث</string>
+    <string name="relevancy">الصلة</string>
+    <string name="popularity">شعبية</string>
+    <string name="published_at">نشرت في</string>
+    <string name="filter_image">تصفية الصورة</string>
 
 </resources>

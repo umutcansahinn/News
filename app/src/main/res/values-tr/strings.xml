@@ -17,4 +17,8 @@
     <string name="dark_mode">Karanlık Mod</string>
     <string name="visit_web_site">Siteyi Ziyaret Et</string>
     <string name="search">Arama</string>
+    <string name="relevancy">Alaka Düzeyi</string>
+    <string name="popularity">Populerlik</string>
+    <string name="published_at">Yayın Tarihi</string>
+    <string name="filter_image">Filtre Resmi</string>
 </resources>

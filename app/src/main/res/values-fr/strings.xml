@@ -17,4 +17,8 @@
     <string name="dark_mode">Mode Sombre</string>
     <string name="visit_web_site">visiter le site internet</string>
     <string name="search">Recherche</string>
+    <string name="relevancy">Pertinence</string>
+    <string name="popularity">Popularité</string>
+    <string name="published_at">Publié à</string>
+    <string name="filter_image">Filtrer l\'image</string>
 </resources>

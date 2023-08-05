@@ -17,4 +17,8 @@
     <string name="dark_mode">Dunkelmodus</string>
     <string name="visit_web_site">Besuche Die Website</string>
     <string name="search">suchen</string>
+    <string name="relevancy">Relevanz</string>
+    <string name="popularity">Popularität</string>
+    <string name="published_at">Veröffentlicht unter</string>
+    <string name="filter_image">Bild filtern</string>
 </resources>

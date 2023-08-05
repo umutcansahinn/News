@@ -17,5 +17,9 @@
     <string name="dark_mode">темный режим</string>
     <string name="visit_web_site">посетите вебсайт</string>
     <string name="search">поиск</string>
+    <string name="relevancy">Актуальность</string>
+    <string name="popularity">Популярность</string>
+    <string name="published_at">Опубликовано в</string>
+    <string name="filter_image">Фильтровать изображение</string>
 
 </resources>
