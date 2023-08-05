@@ -20,10 +20,13 @@ class SearchViewModel @Inject constructor(
     private val _searchState = MutableStateFlow<SearchUiState>(SearchUiState.Loading)
     val searchState = _searchState.asStateFlow()
 
+    var isRadioGroupVisible: Boolean = false
+    var sorBy: String = SortBy.PUBLISHED_AT.name
+    var searchQ: String = ""
 
     fun getNewsBySearch(
-        q: String,
-        sortBy: String = SortBy.PUBLISHED_AT.name
+        q: String = searchQ,
+        sortBy: String = sorBy
     ) = viewModelScope.launch {
         getNewsBySearchUseCase(q, sortBy).collect { resources ->
             when (resources) {

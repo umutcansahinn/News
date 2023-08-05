@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="16dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.search_screen.SearchFragment">
 
 
@@ -22,17 +22,72 @@
         android:orientation="vertical"
         app:layout_constraintGuide_end="20dp" />
 
+    <ImageView
+        android:id="@+id/ivFilter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/filter_image"
+        android:src="@drawable/ic_filter"
+        app:layout_constraintBottom_toBottomOf="@id/textInputSearch"
+        app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+        app:layout_constraintStart_toEndOf="@id/textInputSearch"
+        app:layout_constraintTop_toTopOf="@id/textInputSearch" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingVertical="8dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+        app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+        app:layout_constraintTop_toBottomOf="@id/textInputSearch">
+
+
+        <RadioButton
+            android:id="@+id/rbRelevancy"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            android:layout_weight="1"
+            android:padding="12dp"
+            android:text="@string/relevancy" />
+
+        <RadioButton
+            android:id="@+id/rbPopularity"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            android:layout_weight="1"
+            android:padding="12dp"
+            android:text="@string/popularity" />
+
+        <RadioButton
+            android:id="@+id/rbPublishedAt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            android:layout_weight="1"
+            android:padding="12dp"
+            android:text="@string/published_at" />
+    </RadioGroup>
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputSearch"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
         android:hint="@string/search"
         android:visibility="visible"
         app:endIconMode="clear_text"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/ivFilter"
         app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
-        app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+        app:layout_constraintTop_toTopOf="parent"
         app:startIconDrawable="@drawable/ic_search">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -48,11 +103,11 @@
         android:layout_height="0dp"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/home_adapter_item"
-        app:layout_constraintTop_toBottomOf="@id/textInputSearch"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
         app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
-        app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"/>
+        app:layout_constraintTop_toBottomOf="@id/radioGroup"
+        tools:listitem="@layout/home_adapter_item" />
 
 
     <include
@@ -61,9 +116,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
         app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,10 +5,13 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.umutcansahin.mynewsapp.R
+import com.umutcansahin.mynewsapp.common.enums.SortBy
 import com.umutcansahin.mynewsapp.common.extensions.gone
 import com.umutcansahin.mynewsapp.common.extensions.visible
 import com.umutcansahin.mynewsapp.databinding.FragmentSearchBinding
@@ -40,6 +43,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.getNewsBySearch(viewModel.searchQ, viewModel.sorBy)
         initView()
     }
 
@@ -84,29 +88,67 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
         with(binding) {
             homeRecyclerview.adapter = adapter
             homeRecyclerview.addOnScrollListener(recyclerviewListener)
+        }
+        editTextChangedListener()
+        initRadioGroup()
+    }
 
-            editTextSearch.addTextChangedListener(object : TextWatcher {
-                override fun beforeTextChanged(
-                    s: CharSequence?,
-                    start: Int,
-                    count: Int,
-                    after: Int
-                ) {
+    private fun editTextChangedListener() = with(binding) {
+        editTextSearch.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(
+                s: CharSequence?,
+                start: Int,
+                count: Int,
+                after: Int
+            ) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+
+            override fun afterTextChanged(s: Editable?) {
+                val firstCondition = s != null
+                val secondCondition = s.toString().length > 1
+                if (firstCondition and secondCondition) {
+                    viewModel.searchQ = s.toString()
+                    viewModel.getNewsBySearch(viewModel.searchQ, viewModel.sorBy)
+                    observeData()
+                } else {
+                    adapter.currentList.clear()
+                }
+            }
+        })
+    }
+
+    private fun initRadioGroup() = with(binding) {
+        ivFilter.setOnClickListener {
+            viewModel.isRadioGroupVisible = viewModel.isRadioGroupVisible.not()
+            radioGroup.isVisible = viewModel.isRadioGroupVisible
+        }
+
+        when (viewModel.sorBy) {
+            SortBy.PUBLISHED_AT.name -> rbPublishedAt.isChecked = true
+            SortBy.RELEVANCY.name -> rbRelevancy.isChecked = true
+            SortBy.POPULARITY.name -> rbPopularity.isChecked = true
+        }
+
+        radioGroup.setOnCheckedChangeListener { _, checkedId ->
+            when (checkedId) {
+                R.id.rbPopularity -> {
+                    viewModel.sorBy = SortBy.POPULARITY.name
+                    viewModel.getNewsBySearch(viewModel.searchQ, viewModel.sorBy)
                 }
 
-                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
-
-                override fun afterTextChanged(s: Editable?) {
-                    val firstCondition = s != null
-                    val secondCondition = s.toString().length > 1
-                    if (firstCondition and secondCondition) {
-                        viewModel.getNewsBySearch(s.toString())
-                        observeData()
-                    } else {
-                        adapter.currentList.clear()
-                    }
+                R.id.rbPublishedAt -> {
+                    viewModel.sorBy = SortBy.PUBLISHED_AT.name
+                    viewModel.getNewsBySearch(viewModel.searchQ, viewModel.sorBy)
                 }
-            })
+
+                R.id.rbRelevancy -> {
+                    viewModel.sorBy = SortBy.RELEVANCY.name
+                    viewModel.getNewsBySearch(viewModel.searchQ, viewModel.sorBy)
+                }
+            }
+            observeData()
         }
     }
 

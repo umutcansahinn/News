@@ -18,4 +18,8 @@
     <string name="dark_mode">Dark Mode</string>
     <string name="visit_web_site">Visit Web Site</string>
     <string name="search">Search</string>
+    <string name="relevancy">Relevancy</string>
+    <string name="popularity">Popularity</string>
+    <string name="published_at">Published At</string>
+    <string name="filter_image">Filter Image</string>
 </resources>
