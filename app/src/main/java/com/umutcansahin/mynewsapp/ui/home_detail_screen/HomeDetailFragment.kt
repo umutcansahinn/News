@@ -8,7 +8,6 @@ import androidx.navigation.fragment.navArgs
 import com.umutcansahin.mynewsapp.common.extensions.loadImage
 import com.umutcansahin.mynewsapp.common.extensions.toFormatDate
 import com.umutcansahin.mynewsapp.databinding.FragmentHomeDetailBinding
-import com.umutcansahin.mynewsapp.ui.MainActivity
 import com.umutcansahin.mynewsapp.ui.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -39,20 +38,6 @@ class HomeDetailFragment :
                 intent.data = Uri.parse(model.url)
                 startActivity(intent)
             }
-        }
-    }
-
-    private fun hideBottomBar() {
-        val activity = requireActivity()
-        if (activity is MainActivity) {
-            activity.hideBottomNavigation()
-        }
-    }
-
-    private fun showBottomBar() {
-        val activity = requireActivity()
-        if (activity is MainActivity) {
-            activity.showBottomNavigation()
         }
     }
 
