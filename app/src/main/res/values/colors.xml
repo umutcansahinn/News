@@ -1,5 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+
+    <color name="primary">@color/md_theme_light_primary</color>
+    <color name="onPrimary">@color/md_theme_light_onPrimary</color>
+    <color name="primaryContainer">@color/md_theme_light_primaryContainer</color>
+    <color name="onPrimaryContainer">@color/md_theme_light_onPrimaryContainer</color>
+    <color name="secondary">@color/md_theme_light_secondary</color>
+    <color name="onSecondary">@color/md_theme_light_onSecondary</color>
+    <color name="secondaryContainer">@color/md_theme_light_secondaryContainer</color>
+    <color name="onSecondaryContainer">@color/md_theme_light_onSecondaryContainer</color>
+    <color name="tertiary">@color/md_theme_light_tertiary</color>
+    <color name="onTertiary">@color/md_theme_light_onTertiary</color>
+    <color name="tertiaryContainer">@color/md_theme_light_tertiaryContainer</color>
+    <color name="onTertiaryContainer">@color/md_theme_light_onTertiaryContainer</color>
+    <color name="error">@color/md_theme_light_error</color>
+    <color name="errorContainer">@color/md_theme_light_errorContainer</color>
+    <color name="onError">@color/md_theme_light_onError</color>
+    <color name="onErrorContainer">@color/md_theme_light_onErrorContainer</color>
+    <color name="background">@color/md_theme_light_background</color>
+    <color name="onBackground">@color/md_theme_light_onBackground</color>
+    <color name="surface">@color/md_theme_light_surface</color>
+    <color name="onSurface">@color/md_theme_light_onSurface</color>
+    <color name="surfaceVariant">@color/md_theme_light_surfaceVariant</color>
+    <color name="onSurfaceVariant">@color/md_theme_light_onSurfaceVariant</color>
+    <color name="outline">@color/md_theme_light_outline</color>
+    <color name="inverseOnSurface">@color/md_theme_light_inverseOnSurface</color>
+    <color name="inverseSurface">@color/md_theme_light_inverseSurface</color>
+    <color name="inversePrimary">@color/md_theme_light_inversePrimary</color>
+    <color name="shadow">@color/md_theme_light_shadow</color>
+    <color name="surfaceTint">@color/md_theme_light_surfaceTint</color>
+    <color name="outlineVariant">@color/md_theme_light_outlineVariant</color>
+    <color name="scrim">@color/md_theme_light_scrim</color>
 </resources>

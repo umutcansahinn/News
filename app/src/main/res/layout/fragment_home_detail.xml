@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     tools:context=".ui.home_detail_screen.HomeDetailFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -42,7 +43,7 @@
             android:layout_height="wrap_content"
             android:text=""
             android:gravity="start"
-            android:textColor="@color/black"
+            android:textColor="@color/onSurface"
             android:textSize="18sp"
             android:textStyle="bold"
             tools:text="Exclusive: Banks vote to limit accounting of emissions in bond and stock sales - Reuters"
@@ -57,7 +58,7 @@
             android:layout_height="wrap_content"
             android:text=""
             android:gravity="start"
-            android:textColor="@color/black"
+            android:textColor="@color/onSurface"
             android:textSize="16sp"
             tools:text="2023-07-30T11:43:00Z"
             android:layout_marginTop="8dp"
@@ -71,7 +72,7 @@
             android:layout_height="wrap_content"
             android:text=""
             android:gravity="start"
-            android:textColor="@color/black"
+            android:textColor="@color/onSurface"
             android:textSize="16sp"
             tools:text="Arlette Saenz"
             android:layout_marginTop="8dp"
@@ -85,7 +86,7 @@
             android:layout_height="wrap_content"
             android:text=""
             android:gravity="start"
-            android:textColor="@color/black"
+            android:textColor="@color/onSurface"
             android:textSize="16sp"
             tools:text="The Biden administration is launching a beta website for its new income-driven student loan repayment plan today, officials told CNN, allowing borrowers to begin submitting applications for the program as federal student loan payments are set to resume in Oct…"
             android:layout_marginTop="8dp"
@@ -99,7 +100,7 @@
             android:layout_height="wrap_content"
             android:text=""
             android:gravity="end"
-            android:textColor="@color/black"
+            android:textColor="@color/onSurface"
             android:textSize="16sp"
             tools:text="CNN"
             android:layout_marginTop="8dp"
@@ -114,6 +115,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="@string/visit_web_site"
+            android:textColor="@color/onPrimary"
+           android:backgroundTint="@color/primary"
             app:layout_constraintTop_toBottomOf="@id/tvArticleSourceName"
             app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"/>
 

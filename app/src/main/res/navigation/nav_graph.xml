@@ -24,11 +24,6 @@
             app:argType="com.umutcansahin.mynewsapp.domain.model.ArticleUiModel" />
     </fragment>
     <fragment
-        android:id="@+id/navigation_favorite_screen"
-        android:name="com.umutcansahin.mynewsapp.ui.favori_screen.FavoriteFragment"
-        android:label="@string/favorite"
-        tools:layout="@layout/fragment_favorite" />
-    <fragment
         android:id="@+id/navigation_setting_screen"
         android:name="com.umutcansahin.mynewsapp.ui.setting_screen.SettingFragment"
         android:label="@string/setting"

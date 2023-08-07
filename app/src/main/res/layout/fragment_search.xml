@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="16dp"
+    android:background="@color/background"
     tools:context=".ui.search_screen.SearchFragment">
 
 
@@ -40,6 +41,7 @@
         android:orientation="horizontal"
         android:paddingVertical="8dp"
         android:visibility="gone"
+        android:background="@color/background"
         app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
         app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
         app:layout_constraintTop_toBottomOf="@id/textInputSearch">
@@ -50,7 +52,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textSize="14sp"
-            android:textColor="@color/black"
+            android:textColor="@color/onSurface"
+            android:buttonTint="@color/onPrimaryContainer"
             android:layout_weight="1"
             android:padding="12dp"
             android:text="@string/relevancy" />
@@ -60,7 +63,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textSize="14sp"
-            android:textColor="@color/black"
+            android:textColor="@color/onSurface"
+            android:buttonTint="@color/onPrimaryContainer"
             android:layout_weight="1"
             android:padding="12dp"
             android:text="@string/popularity" />
@@ -70,7 +74,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textSize="14sp"
-            android:textColor="@color/black"
+            android:textColor="@color/onSurface"
+            android:buttonTint="@color/onPrimaryContainer"
             android:layout_weight="1"
             android:padding="12dp"
             android:text="@string/published_at" />
@@ -85,6 +90,8 @@
         android:hint="@string/search"
         android:visibility="visible"
         app:endIconMode="clear_text"
+        app:boxStrokeColor="@color/onPrimaryContainer"
+        android:background="@color/background"
         app:layout_constraintEnd_toStartOf="@id/ivFilter"
         app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
         app:layout_constraintTop_toTopOf="parent"

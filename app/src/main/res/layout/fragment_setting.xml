@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     android:paddingTop="20dp"
     tools:context=".ui.setting_screen.SettingFragment">
 
@@ -25,8 +26,9 @@
         android:id="@+id/tvLanguageTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
+        android:textColor="@color/onSurface"
         android:textSize="22sp"
+        android:background="@color/background"
         android:text="@string/language"
         app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
         app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
@@ -39,6 +41,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        app:boxStrokeColor="@color/onPrimaryContainer"
+        android:background="@color/background"
         app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
         app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
         app:layout_constraintTop_toBottomOf="@id/tvLanguageTitle">
@@ -49,7 +53,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:inputType="none"
-            tools:text="English" />
+            tools:text="English"
+            android:textColor="@color/onSurface"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -57,9 +62,10 @@
         android:id="@+id/tvThemeTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
+        android:textColor="@color/onSurface"
         android:textSize="22sp"
         android:text="@string/dark_mode"
+        android:background="@color/background"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toStartOf="@id/switchDarkMode"
         app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
@@ -70,6 +76,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="16dp"
+        android:thumbTint="@color/onPrimaryContainer"
+        android:trackTint="@color/secondary"
+        android:background="@color/background"
         app:layout_constraintTop_toTopOf="@id/tvThemeTitle"
         app:layout_constraintBottom_toBottomOf="@id/tvThemeTitle"
         app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
