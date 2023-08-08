@@ -14,4 +14,6 @@ object Constants {
     const val DATASTORE_NAME = "app_language_preferences"
     const val DATASTORE_LANGUAGE_KEY = "selected_language_code"
     const val DATASTORE_THEME_KEY = "is_dark_mode_enabled"
+    const val MINIMUM_SEARCH_LENGTH = 1
+    const val SEARCH_DEBOUNCE_TIME_IN_MILLISECONDS = 300L
 }

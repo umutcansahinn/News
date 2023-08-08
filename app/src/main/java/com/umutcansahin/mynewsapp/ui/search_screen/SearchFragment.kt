@@ -1,8 +1,6 @@
 package com.umutcansahin.mynewsapp.ui.search_screen
 
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import androidx.core.view.isVisible
@@ -11,8 +9,12 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.umutcansahin.mynewsapp.R
+import com.umutcansahin.mynewsapp.common.Constants.MINIMUM_SEARCH_LENGTH
+import com.umutcansahin.mynewsapp.common.Constants.SEARCH_DEBOUNCE_TIME_IN_MILLISECONDS
 import com.umutcansahin.mynewsapp.common.enums.SortBy
 import com.umutcansahin.mynewsapp.common.extensions.gone
+import com.umutcansahin.mynewsapp.common.extensions.observeTextChanges
+import com.umutcansahin.mynewsapp.common.extensions.okWith
 import com.umutcansahin.mynewsapp.common.extensions.visible
 import com.umutcansahin.mynewsapp.databinding.FragmentSearchBinding
 import com.umutcansahin.mynewsapp.domain.model.ArticleUiModel
@@ -21,6 +23,11 @@ import com.umutcansahin.mynewsapp.manager.recyclerview_listener.RecyclerviewList
 import com.umutcansahin.mynewsapp.ui.base.BaseFragment
 import com.umutcansahin.mynewsapp.ui.home_screen.adapter.HomeAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -93,29 +100,19 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
     }
 
     private fun editTextChangedListener() = with(binding) {
-        editTextSearch.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(
-                s: CharSequence?,
-                start: Int,
-                count: Int,
-                after: Int
-            ) {
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
-
-            override fun afterTextChanged(s: Editable?) {
-                val firstCondition = s != null
-                val secondCondition = s.toString().length > 1
-                if (firstCondition and secondCondition) {
-                    viewModel.searchQ = s.toString()
+        editTextSearch.observeTextChanges()
+            .filter { it okWith MINIMUM_SEARCH_LENGTH }
+            .debounce(SEARCH_DEBOUNCE_TIME_IN_MILLISECONDS)
+            .distinctUntilChanged()
+            .onEach {
+                if (it.isBlank().not()) {
+                    viewModel.searchQ = it
                     viewModel.getNewsBySearch(viewModel.searchQ, viewModel.sorBy)
                     observeData()
                 } else {
                     adapter.currentList.clear()
                 }
-            }
-        })
+            }.launchIn(lifecycleScope)
     }
 
     private fun initRadioGroup() = with(binding) {
