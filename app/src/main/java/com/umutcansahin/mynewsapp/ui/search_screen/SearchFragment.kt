@@ -59,45 +59,41 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
     private fun observeData() {
         lifecycleScope.launch {
             viewModel.searchState.flowWithLifecycle(lifecycle).collect { states ->
-                when (states) {
-                    is SearchUiState.Loading -> {
-                        loadingIndicator.showLoading()
-                        with(binding) {
-                            homeRecyclerview.gone()
-                            errorMassage.root.gone()
-                            editTextSearch.isClickable = false
-                        }
+                if (states.isError != null) {
+                    loadingIndicator.hideLoading()
+                    with(binding) {
+                        homeRecyclerview.gone()
+                        errorMassage.root.visible()
+                        editTextSearch.gone()
                     }
+                    Log.d("UMUT_UMUT_ERROR", states.isError)
+                }
 
-                    is SearchUiState.Error -> {
-                        loadingIndicator.hideLoading()
-                        with(binding) {
-                            homeRecyclerview.gone()
-                            errorMassage.root.visible()
-                            editTextSearch.gone()
-                        }
-                        Log.d("UMUT_UMUT_ERROR", states.errorMessage)
+                if (states.isLoading) {
+                    loadingIndicator.showLoading()
+                    with(binding) {
+                        homeRecyclerview.gone()
+                        errorMassage.root.gone()
+                        editTextSearch.isClickable = false
                     }
-
-                    is SearchUiState.Success -> {
-                        loadingIndicator.hideLoading()
-                        with(binding) {
-                            homeRecyclerview.visible()
-                            errorMassage.root.gone()
-                            editTextSearch.isClickable = true
-                        }
-                        adapter.submitList(states.data.article)
+                }
+                if (states.isSuccess != null) {
+                    loadingIndicator.hideLoading()
+                    with(binding) {
+                        homeRecyclerview.visible()
+                        errorMassage.root.gone()
+                        editTextSearch.isClickable = true
                     }
-
-                    is SearchUiState.EmptyState -> {
-                        loadingIndicator.hideLoading()
-                        with(binding) {
-                            homeRecyclerview.visible()
-                            errorMassage.root.gone()
-                            editTextSearch.visible()
-                            editTextSearch.requestFocus()
-                            openKeyboard()
-                        }
+                    adapter.submitList(states.isSuccess.article)
+                }
+                if (states.emptyState) {
+                    loadingIndicator.hideLoading()
+                    with(binding) {
+                        homeRecyclerview.visible()
+                        errorMassage.root.gone()
+                        editTextSearch.visible()
+                        editTextSearch.requestFocus()
+                        openKeyboard()
                     }
                 }
             }

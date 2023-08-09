@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.umutcansahin.mynewsapp.common.Constants.REFRESH_TIME
 import com.umutcansahin.mynewsapp.common.Resource
+import com.umutcansahin.mynewsapp.common.extensions.EMPTY
 import com.umutcansahin.mynewsapp.data.preference.DataStorePreference
 import com.umutcansahin.mynewsapp.domain.use_case.top_headlines_use_case.GetTopHeadlinesNewsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -22,11 +23,11 @@ class HomeViewModel @Inject constructor(
 ) : ViewModel() {
 
 
-    private val _state = MutableStateFlow<HomeUiState>(HomeUiState.Loading)
+    private val _state = MutableStateFlow(HomeUiState())
     val state = _state.asStateFlow()
 
     private var pollingJob: Job? = null
-    private var countryCode = ""
+    private var countryCode = String.EMPTY
 
     init {
         getCountryCode()
@@ -47,9 +48,29 @@ class HomeViewModel @Inject constructor(
             while (true) {
                 getTopHeadlinesNewsUseCase(countryCode).collect { resources ->
                     when (resources) {
-                        is Resource.Loading -> _state.update { HomeUiState.Loading }
-                        is Resource.Error -> _state.update { HomeUiState.Error(resources.errorMessage) }
-                        is Resource.Success -> _state.update { HomeUiState.Success(resources.data) }
+                        is Resource.Loading -> _state.update {
+                            it.copy(
+                                isLoading = true,
+                                isError = null,
+                                isSuccess = null
+                            )
+                        }
+
+                        is Resource.Error -> _state.update {
+                            it.copy(
+                                isLoading = false,
+                                isError = resources.errorMessage,
+                                isSuccess = null
+                            )
+                        }
+
+                        is Resource.Success -> _state.update {
+                            it.copy(
+                                isLoading = false,
+                                isError = null,
+                                isSuccess = resources.data
+                            )
+                        }
                     }
                 }
                 delay(REFRESH_TIME)

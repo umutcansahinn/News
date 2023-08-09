@@ -44,32 +44,29 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     private fun observeData() {
         lifecycleScope.launch {
             viewModel.state.flowWithLifecycle(lifecycle).collect { states ->
-                when (states) {
-                    is HomeUiState.Loading -> {
-                        loadingIndicator.showLoading()
-                        with(binding) {
-                            homeRecyclerview.gone()
-                            errorMassage.root.gone()
-                        }
+                if (states.isLoading) {
+                    loadingIndicator.showLoading()
+                    with(binding) {
+                        homeRecyclerview.gone()
+                        errorMassage.root.gone()
                     }
+                }
+                if (states.isError != null) {
+                    loadingIndicator.hideLoading()
+                    with(binding) {
+                        homeRecyclerview.gone()
+                        errorMassage.root.visible()
+                    }
+                    Log.d("UMUT_UMUT_ERROR", states.isError)
+                }
 
-                    is HomeUiState.Error -> {
-                        loadingIndicator.hideLoading()
-                        with(binding) {
-                            homeRecyclerview.gone()
-                            errorMassage.root.visible()
-                        }
-                        Log.d("UMUT_UMUT_ERROR", states.errorMessage)
+                if (states.isSuccess != null) {
+                    loadingIndicator.hideLoading()
+                    with(binding) {
+                        homeRecyclerview.visible()
+                        errorMassage.root.gone()
                     }
-
-                    is HomeUiState.Success -> {
-                        loadingIndicator.hideLoading()
-                        with(binding) {
-                            homeRecyclerview.visible()
-                            errorMassage.root.gone()
-                        }
-                        homeAdapter.submitList(states.data.article)
-                    }
+                    homeAdapter.submitList(states.isSuccess.article)
                 }
             }
         }
