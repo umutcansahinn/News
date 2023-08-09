@@ -7,5 +7,6 @@ sealed interface SearchUiState {
     object Loading : SearchUiState
     data class Error(val errorMessage: String) : SearchUiState
     data class Success(val data: NewsUiModel) : SearchUiState
+    object EmptyState : SearchUiState
 
 }

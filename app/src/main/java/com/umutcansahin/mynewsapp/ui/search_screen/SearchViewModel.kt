@@ -17,7 +17,7 @@ class SearchViewModel @Inject constructor(
     private val getNewsBySearchUseCase: GetNewsBySearchUseCase
 ) : ViewModel() {
 
-    private val _searchState = MutableStateFlow<SearchUiState>(SearchUiState.Loading)
+    private val _searchState = MutableStateFlow<SearchUiState>(SearchUiState.EmptyState)
     val searchState = _searchState.asStateFlow()
 
     var isRadioGroupVisible: Boolean = false

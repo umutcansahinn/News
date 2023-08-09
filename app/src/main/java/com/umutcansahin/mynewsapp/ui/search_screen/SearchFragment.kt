@@ -1,8 +1,10 @@
 package com.umutcansahin.mynewsapp.ui.search_screen
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
@@ -23,6 +25,7 @@ import com.umutcansahin.mynewsapp.manager.recyclerview_listener.RecyclerviewList
 import com.umutcansahin.mynewsapp.ui.base.BaseFragment
 import com.umutcansahin.mynewsapp.ui.home_screen.adapter.HomeAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.filter
@@ -49,8 +52,8 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getNewsBySearch(viewModel.searchQ, viewModel.sorBy)
         initView()
+        observeData()
     }
 
     private fun observeData() {
@@ -62,7 +65,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
                         with(binding) {
                             homeRecyclerview.gone()
                             errorMassage.root.gone()
-                            editTextSearch.visible()
+                            editTextSearch.isClickable = false
                         }
                     }
 
@@ -81,13 +84,31 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
                         with(binding) {
                             homeRecyclerview.visible()
                             errorMassage.root.gone()
-                            editTextSearch.visible()
+                            editTextSearch.isClickable = true
                         }
                         adapter.submitList(states.data.article)
+                    }
+
+                    is SearchUiState.EmptyState -> {
+                        loadingIndicator.hideLoading()
+                        with(binding) {
+                            homeRecyclerview.visible()
+                            errorMassage.root.gone()
+                            editTextSearch.visible()
+                            editTextSearch.requestFocus()
+                            openKeyboard()
+                        }
                     }
                 }
             }
         }
+    }
+
+    private fun openKeyboard() {
+        val inputMethodManager =
+            requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.showSoftInput(binding.editTextSearch, InputMethodManager.SHOW_IMPLICIT)
+
     }
 
     private fun initView() {
@@ -99,6 +120,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
         initRadioGroup()
     }
 
+    @OptIn(FlowPreview::class)
     private fun editTextChangedListener() = with(binding) {
         editTextSearch.observeTextChanges()
             .filter { it okWith MINIMUM_SEARCH_LENGTH }
@@ -108,9 +130,6 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
                 if (it.isBlank().not()) {
                     viewModel.searchQ = it
                     viewModel.getNewsBySearch(viewModel.searchQ, viewModel.sorBy)
-                    observeData()
-                } else {
-                    adapter.currentList.clear()
                 }
             }.launchIn(lifecycleScope)
     }
@@ -131,20 +150,17 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
             when (checkedId) {
                 R.id.rbPopularity -> {
                     viewModel.sorBy = SortBy.POPULARITY.name
-                    viewModel.getNewsBySearch(viewModel.searchQ, viewModel.sorBy)
                 }
 
                 R.id.rbPublishedAt -> {
                     viewModel.sorBy = SortBy.PUBLISHED_AT.name
-                    viewModel.getNewsBySearch(viewModel.searchQ, viewModel.sorBy)
                 }
 
                 R.id.rbRelevancy -> {
                     viewModel.sorBy = SortBy.RELEVANCY.name
-                    viewModel.getNewsBySearch(viewModel.searchQ, viewModel.sorBy)
                 }
             }
-            observeData()
+            viewModel.getNewsBySearch(viewModel.searchQ, viewModel.sorBy)
         }
     }
 
