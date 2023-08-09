@@ -13,7 +13,11 @@ class GetNewsBySearchUseCaseImpl @Inject constructor(
     override fun invoke(q: String, sortBy: String): Flow<Resource<NewsUiModel>> = flow {
         try {
             emit(Resource.Loading)
-            emit(Resource.Success(newsRepository.getNewsBySortBy(q, sortBy)))
+            newsRepository.getNewsBySortBy(q, sortBy).apply {
+                article.filter { it.urlToImage.isEmpty().not() }
+            }.also {
+                emit(Resource.Success(it))
+            }
         } catch (e: Exception) {
             emit(Resource.Error(e.message.orEmpty()))
         }
