@@ -100,5 +100,22 @@ dependencies {
     //datastore
     implementation("androidx.datastore:datastore-preferences:1.0.0")
 
+    //truth
+    androidTestImplementation("com.google.truth:truth:1.1.2")
+    testImplementation("com.google.truth:truth:1.1.2")
+
+    //junit
+    testImplementation("junit:junit:4.13.2")
+
+    // MockWebServer
+    testImplementation ("com.squareup.okhttp3:mockwebserver:4.9.3")
+
+    // Turbine
+    testImplementation ("app.cash.turbine:turbine:0.9.0")
+
+    // Mockito
+    testImplementation ("org.mockito.kotlin:mockito-kotlin:5.1.0")
+    testImplementation ("org.mockito:mockito-inline:4.2.0")
+
 
 }
